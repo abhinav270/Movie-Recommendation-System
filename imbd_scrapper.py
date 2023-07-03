@@ -46,7 +46,9 @@ for page in range(10000):
         for i in listing.iterchildren():
             for j in i.iterchildren():
                 text = j.text_content().replace("\n",'').replace("  ","")
-                text = text.replace('Rate this\xa0\xa0123456789107.9/10X\xa0','')
+                remove_list = ['this\xa0\xa012345678910-/10X\xa0Add','Rate this\xa0\xa0123456789107.9/10X\xa0','\xa0\xa012345678910','\xa0\xa012345678910-/10X\xa0']
+                for remove in remove_list:
+                    text = text.replace(remove,'')
                 text_list = [i.strip() for i in text.split('|')]
                 search_list.append(text_list)
                 print(text_list)
